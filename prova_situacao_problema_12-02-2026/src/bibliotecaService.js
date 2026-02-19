@@ -18,7 +18,7 @@ export async function produtosMaiorSaidaNoPeriodo(dataInicial, dataFinal) {
          FROM movimentacoes 
          WHERE tipo = 'SAIDA' 
          AND data_movimentacao 
-         BETWEEN "2026-01-01 00:00:00" AND "2026-12-31 23:59:59"
+         BETWEEN ? AND ?
           GROUP BY produto_id ) m ON m.produto_id = p.id 
           ORDER BY m.quantidade_total_saida DESC`,
         [dataInicial, dataFinal]);
@@ -62,6 +62,37 @@ export async function registrarEntradas(produto_id, tipo, quantidade, data_movim
     console.log(rows);
     return rows[0] 
 }
+
+export async function produtosMaiorSaidaNoPeriodo(dataInicial, dataFinal) {
+    const [rows] = await pool.query(`SELECT p.id AS produto_id, 
+        p.nome AS produto, 
+         p.valor_unitario, 
+         m.quantidade_total_saida 
+         FROM produtos p 
+         LEFT JOIN 
+        ( SELECT produto_id, SUM(quantidade) AS quantidade_total_saida 
+         FROM movimentacoes 
+         WHERE tipo = 'SAIDA' 
+         AND data_movimentacao 
+         BETWEEN ? AND ?
+          GROUP BY produto_id ) m ON m.produto_id = p.id 
+          ORDER BY m.quantidade_total_saida DESC`,
+        [dataInicial, dataFinal]);
+    return rows.map((item) => {
+        const quantidade = item.quantidade_total_saida; 
+        const valorUnitario = item.valor_unitario;
+        return { 
+            produto: item.produto, 
+            quantidade_total_saida: quantidade, 
+            valor_total_financeiro_saidas: quantidade * valorUnitario 
+        };
+    });
+}
+
+
+
+
+
 
 
 
