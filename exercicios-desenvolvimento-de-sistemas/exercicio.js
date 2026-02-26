@@ -33,7 +33,6 @@ promiseBolo(2)
     .catch((erro) => {
         console.log(erro);
     });
-    .finally(())
 
 
 
@@ -41,5 +40,3 @@ promiseBolo(2)
 // quando chamar a funcao(usem metodos js)
 // se o numero for maior que 5, retorna resolve, se não retorna reject
 // usem o finally livremente.
-
-function
