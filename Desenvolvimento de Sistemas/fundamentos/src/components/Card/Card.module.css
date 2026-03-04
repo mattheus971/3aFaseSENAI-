@@ -1,0 +1,21 @@
+.cardContainerApi{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.card{
+    background-attachment: whitesmoke;
+    border: 1px grey;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+}
+
+.input{
+    width: 500px;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 8px;
+    border: none;
+}
