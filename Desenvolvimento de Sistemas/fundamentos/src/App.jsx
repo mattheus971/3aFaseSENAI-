@@ -10,7 +10,7 @@ function App() {
     <>
       <Header title="Nome do site"/>
       <Body/>
-      <Footer autor="Luciano Rocha"/>
+      <Footer autor="Matheus Velozo"/>
 
     </>
   )

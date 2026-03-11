@@ -5,17 +5,17 @@
 }
 
 .card{
-    background-attachment: whitesmoke;
-    border: 1px grey;
+    background:#FFF;
+    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
-    width: 200px;
+    width: 250px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
 }
 
 .input{
     width: 500px;
-    padding: 12px;
-    border-radius: 8px;
-    margin: 8px;
+    padding: 10px;
+    margin-bottom: 30px;
     border: none;
 }
