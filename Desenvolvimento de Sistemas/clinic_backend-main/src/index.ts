@@ -31,6 +31,22 @@ app.post("/usuarios", async (req, res) => {
 
 //Exames
 
+app.get('/exames', async (req, res) => {
+  const exames = await prisma.exame.findMany();
+  res.json(exames);
+})
+
+app.post("/exames", async (req, res) => {
+  console.log(req.body)
+  const dadosExame = req.body as Exame
+  const exameCriado = await prisma.exame.create({
+    data: {
+      nome: dadosExame.nome || null
+    }
+  })
+  return res.status(201).json(exameCriado)
+})
+
 app.listen(port, () => {
   console.log("Servidor ta de pé :p")
 })
