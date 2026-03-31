@@ -9,8 +9,9 @@ import { Home } from './pages/Home';
 import { Sobre } from './pages/Sobre';
 import { Main } from './layouts/Main';
 import { AuthProvider } from './context/AuthContext';
-import { Login } from './pages/Login';
-import { Blog } from './pages/Blog/Index';
+import Login from './pages/Login';
+import Blog from './pages/Blog';
+import PostDetail from './pages/Blog/PostDetail';
 
 const router = createBrowserRouter([
   {
@@ -23,12 +24,16 @@ const router = createBrowserRouter([
         path: "sobre", element: <Sobre />
       },
       {
-        path: "login", element: <Login />
+        path: "blog", element: <Blog />
       },
       {
-        path: "blog", element: <Blog />
+        path: "post/:id", element: <PostDetail />
       }
     ]
+  },
+  {
+    path: "login",
+    element: <Login />
   }
   // {
   //   path: "/",
@@ -42,7 +47,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider >
+    <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
     {/* <App /> */}

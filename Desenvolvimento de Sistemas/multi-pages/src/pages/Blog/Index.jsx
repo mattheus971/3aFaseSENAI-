@@ -1,15 +1,16 @@
-import  React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 
-export const Blog = () => {
+const Blog = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
         fetch("http://localhost:3000/posts")
             .then(res => res.json())
-            .then(data => setPosts(data))
-            .catch(err => console.error('Failed to load posts', err))
+            .then(data => {
+                setPosts(data)
+            })
     }, [])
-
     return (
         <>
             <div className='flex gap-2'>
@@ -20,12 +21,17 @@ export const Blog = () => {
                             <h2>{post.title}</h2>
                             <h3>{post.views}</h3>
                             <p>{post.description}</p>
+                            {/* <a href='#'>Leia Mais</a> */}
+                            <Link to={`/post/${post.id}`} className='text-white bg-blue-500 hover:bg-blue-700'>
+                                Ver mais
+                            </Link>
                         </div>
-
-
-                    ))
+                    )
+                    )
                 }
             </div>
         </>
     )
 }
+
+export default Blog
