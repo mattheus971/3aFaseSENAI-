@@ -2,9 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-//react router
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
+// react-router
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 //toastify
 import { ToastContainer } from 'react-toastify'
@@ -12,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Login from './pages/Login/Index';
 import Dashboard from './pages/Dashboard/Index';
+import { AuthProvider } from './contexts/AuthContext';
 
 
 
@@ -28,7 +28,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ToastContainer />
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <ToastContainer />
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
